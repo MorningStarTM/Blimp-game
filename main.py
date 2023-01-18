@@ -23,13 +23,13 @@ bg_width = bg_img.get_width()
 blimp = pygame.image.load('./PNG/blimp.png')
 blimp_x = 100
 blimp_y = 90
-blimp_vel = 5
+blimp_vel = 0.1
 blimp_rect = blimp.get_rect()
 blimp_rect.center = [blimp_x, blimp_y]
 
 scroll = 0
 tiles = math.ceil(WIDTH / bg_width) + 1
-gravity = 0.09
+gravity = 0.01
 
 #window loop
 run = True
@@ -48,9 +48,13 @@ while run:
 
     #draw glider
     SCREEN.blit(blimp, (blimp_rect.center[0], blimp_rect.center[1]))
+
     
+    """     Adding Physics      """
+    #Gravity pulls object 
     if blimp_rect.bottom < 700:
         blimp_rect.y += blimp_vel
+        blimp_vel += gravity
         print(blimp_rect.center)
     
     
@@ -62,6 +66,6 @@ while run:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                blimp_y -= 60
+                blimp_rect.y -= 60
     pygame.display.update()
 pygame.quit()
