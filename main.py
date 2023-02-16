@@ -23,7 +23,7 @@ bg_width = bg_img.get_width()
 
 
 #blimp
-blimp  = Blimp(10, 400, 10)
+blimp  = Blimp(70, 400, 10)
 blimp_group = pygame.sprite.Group()
 blimp_group.add(blimp)
 

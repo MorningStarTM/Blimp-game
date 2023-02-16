@@ -37,7 +37,8 @@ class Blimp(pygame.sprite.Sprite):
         key = pygame.key.get_pressed()
         #when left arrow pressed
         if key[pygame.K_UP] and self.rect.y > 0:
-            self.rect.y -= speed
+            self.velocity = -10
+
         
     
     def sprite_groups(self):
