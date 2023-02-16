@@ -1,5 +1,7 @@
 import pygame
 import math
+from blimp import Blimp
+
 pygame.init()
 
 WIDTH   = 1500
@@ -18,6 +20,12 @@ bg_img = pygame.image.load('./PNG/image.png').convert()
 bg_img = pygame.transform.scale(bg_img, (1500,800))
 #get the width
 bg_width = bg_img.get_width()
+
+
+#blimp
+blimp  = Blimp(10, 400, 10)
+blimp_group = pygame.sprite.Group()
+blimp_group.add(blimp)
 
 
 
@@ -48,6 +56,12 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
+
+    #draw the blimp on screen
+    blimp_group.draw(SCREEN)
+
+    #blimp movement
+    blimp.update()
         
     pygame.display.update()
 pygame.quit()
