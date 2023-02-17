@@ -1,12 +1,14 @@
 import pygame
 import math
 from blimp import Blimp
+from obstacle import Obstacle
 
 pygame.init()
 
 WIDTH   = 1800
 HEIGHT  = 1000
 FPS = 60
+obs_gap = 150
 
 clock = pygame.time.Clock()
 
@@ -26,6 +28,12 @@ bg_width = bg_img.get_width()
 blimp  = Blimp(70, 400, 10)
 blimp_group = pygame.sprite.Group()
 blimp_group.add(blimp)
+
+
+#obstacle
+obs = Obstacle(600, 240, 1)
+obs_group = pygame.sprite.Group()
+obs_group.add(obs)
 
 
 
@@ -62,6 +70,10 @@ while run:
 
     #blimp movement
     blimp.update()
+
+    #draw the obstacle
+    obs_group.draw(SCREEN)
+    obs_group.update()
         
     pygame.display.update()
 pygame.quit()
