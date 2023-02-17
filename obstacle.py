@@ -16,7 +16,9 @@ class Obstacle(pygame.sprite.Sprite):
             self.rect.topleft = [x, y]
 
     def update(self):
+        #self.mask = pygame.mask.from_surface(self.image)
         self.rect.x -= 5
+
 
 
     

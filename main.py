@@ -12,6 +12,11 @@ obs_gap = 150
 
 clock = pygame.time.Clock()
 
+#frequency of obstacle
+obs_frequency = 3000
+#last time of obstacle
+last_time = pygame.time.get_ticks() - obs_frequency
+
 #game window
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Glider")
@@ -29,16 +34,17 @@ blimp  = Blimp(70, 400, 10)
 blimp_group = pygame.sprite.Group()
 blimp_group.add(blimp)
 
-
-#obstacle
-obs1 = Obstacle(600, 300, 1)
-obs2 = Obstacle(600, 600, -1)
 obs_group = pygame.sprite.Group()
-obs_group.add(obs1)
-obs_group.add(obs2)
+
+def generate_obstacle():
+    obs1 = Obstacle(WIDTH, 300, 1)
+    obs2 = Obstacle(WIDTH, 600, -1)
+    obs_group.add(obs1)
+    obs_group.add(obs2)
 
 
-scroll = 0
+bg_scroll = 0
+scroll = 5
 tiles = math.ceil(WIDTH / bg_width) + 1
 
 
@@ -47,23 +53,31 @@ run = True
 while run:
 
     clock.tick(FPS)
+    time_now = pygame.time.get_ticks()
 
     #scrolling background
     for i in range(0, tiles):
         SCREEN.blit(bg_img, (i * bg_width + scroll, 0))
+    
     #scroll background
     scroll -= 5
+
 
     if abs(scroll) > bg_width:
         scroll = 0
 
-    
+    if time_now - last_time > obs_frequency:
+        generate_obstacle()
+        last_time = time_now
 
 
     #event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+
+
+
 
 
     #draw the blimp on screen
