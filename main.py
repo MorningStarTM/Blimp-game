@@ -31,10 +31,11 @@ blimp_group.add(blimp)
 
 
 #obstacle
-obs = Obstacle(600, 240, 1)
+obs1 = Obstacle(600, 300, 1)
+obs2 = Obstacle(600, 600, -1)
 obs_group = pygame.sprite.Group()
-obs_group.add(obs)
-
+obs_group.add(obs1)
+obs_group.add(obs2)
 
 
 scroll = 0
@@ -67,12 +68,13 @@ while run:
 
     #draw the blimp on screen
     blimp_group.draw(SCREEN)
-
     #blimp movement
     blimp.update()
 
+
     #draw the obstacle
     obs_group.draw(SCREEN)
+    #obstacle movement
     obs_group.update()
         
     pygame.display.update()
