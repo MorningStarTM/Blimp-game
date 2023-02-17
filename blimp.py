@@ -1,7 +1,7 @@
 import pygame
 
-WIDTH   = 1500
-HEIGHT  = 750
+WIDTH   = 1800
+HEIGHT  = 1000
 
 class Blimp(pygame.sprite.Sprite):
     def __init__(self, x, y, health):
@@ -26,7 +26,7 @@ class Blimp(pygame.sprite.Sprite):
         print(self.velocity)
         if self.velocity > 9:
             self.velocity = 9
-        if self.rect.bottom < 738:
+        if self.rect.bottom < HEIGHT-64:
             
             self.rect.y += int(self.velocity)
 

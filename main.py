@@ -4,8 +4,8 @@ from blimp import Blimp
 
 pygame.init()
 
-WIDTH   = 1500
-HEIGHT  = 750
+WIDTH   = 1800
+HEIGHT  = 1000
 FPS = 60
 
 clock = pygame.time.Clock()
@@ -17,7 +17,7 @@ pygame.display.set_caption("Glider")
 #load backgound image
 bg_img = pygame.image.load('./PNG/image.png').convert()
 #resize the image
-bg_img = pygame.transform.scale(bg_img, (1500,800))
+bg_img = pygame.transform.scale(bg_img, (1500,1000))
 #get the width
 bg_width = bg_img.get_width()
 
