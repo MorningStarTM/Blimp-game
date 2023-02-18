@@ -36,6 +36,7 @@ blimp_group.add(blimp)
 
 obs_group = pygame.sprite.Group()
 
+#generate the obstacles up & down
 def generate_obstacle():
     obs1 = Obstacle(WIDTH, 300, 1)
     obs2 = Obstacle(WIDTH, 600, -1)
@@ -76,7 +77,9 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
-
+    #detect the collision
+    if pygame.sprite.spritecollide(blimp, obs_group, False, pygame.sprite.collide_mask):
+        run = False
 
 
 
