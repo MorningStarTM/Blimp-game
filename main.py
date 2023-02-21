@@ -67,11 +67,7 @@ while run:
     if abs(scroll) > bg_width:
         scroll = 0
 
-    if time_now - last_time > obs_frequency:
-        generate_obstacle()
-        last_time = time_now
-
-
+    
     #event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -93,6 +89,10 @@ while run:
     obs_group.draw(SCREEN)
     #obstacle movement
     obs_group.update()
-        
+
+    if time_now - last_time > obs_frequency:
+        generate_obstacle()
+        last_time = time_now
+
     pygame.display.update()
 pygame.quit()
