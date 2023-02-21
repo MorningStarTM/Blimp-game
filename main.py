@@ -29,19 +29,21 @@ bg_img = pygame.transform.scale(bg_img, (1500,1000))
 bg_width = bg_img.get_width()
 
 
+all_sprite = pygame.sprite.Group()
+
 #blimp
 blimp  = Blimp(70, 400, 10)
 blimp_group = pygame.sprite.Group()
 blimp_group.add(blimp)
 
 obs_group = pygame.sprite.Group()
-
 #generate the obstacles up & down
 def generate_obstacle():
     obs1 = Obstacle(WIDTH, 300, 1)
-    obs2 = Obstacle(WIDTH, 600, -1)
+    #obs2 = Obstacle(WIDTH, 600, -1)
     obs_group.add(obs1)
-    obs_group.add(obs2)
+    all_sprite.add(obs1)
+    #obs_group.add(obs2)
 
 
 bg_scroll = 0
@@ -90,9 +92,11 @@ while run:
     #obstacle movement
     obs_group.update()
 
+
     if time_now - last_time > obs_frequency:
         generate_obstacle()
         last_time = time_now
+    
 
     pygame.display.update()
 pygame.quit()
